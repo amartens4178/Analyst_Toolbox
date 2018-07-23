@@ -1,7 +1,7 @@
 WITH TE_DATES AS (SELECT  
        [ProjectID]
       ,[DateType]
-	  ,[Milestone Name]
+      ,[Milestone Name]
       ,[Milestone Date]
       ,[Product Year]
       ,[Project Number]
