@@ -1,0 +1,20 @@
+WITH TE_DATES AS (SELECT  
+       [ProjectID]
+      ,[DateType]
+	  ,[Milestone Name]
+      ,[Milestone Date]
+      ,[Product Year]
+      ,[Project Number]
+      ,[Dropped Flag]
+  FROM [GMSCLONE].[dbo].[GMSAllDates_Fix]
+  WHERE [Milestone Name] IN ('360 Rev','Ex-Fty Load')
+  AND [DateType] = 'Event Date'
+  AND [Dropped Flag] = 'Keep'
+  AND [Product Year] >= 2012)
+
+
+SELECT [Project Number], [360 Rev], [Ex-Fty Load]
+FROM (
+	SELECT *
+	FROM TE_DATES) data
+ PIVOT (MAX([Milestone Date]) FOR [Milestone Name] IN ([360 Rev], [Ex-Fty Load])) AS pvt
